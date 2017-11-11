@@ -1,13 +1,16 @@
-//Document ready function
+
 $(document).ready(function() {
+	registerClickEvents();
+	
+});
+
+function registerClickEvents() {
 	$("#login-form-submit").click(function() {
+
 		var formdata = $("#login-form").serialize();
-		$("#debug-div").append(formdata);
+		$("#debug-div").text(formdata);
+
 
 		//$.ajax({});
 	});
-});
-
-$(function() {
-	
-});
+}
