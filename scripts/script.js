@@ -9,7 +9,7 @@ function registerClickEvents() {
 		
 		var logindata = {};
 		logindata['username'] = $("#username-input").val();
-		logindata['password'] = md5($("#password-input").val());		
+		logindata['password'] = $("#password-input").val();		
 		$("#debug-div").append(logindata.username + " " + logindata.password + "<br>");
 
 
