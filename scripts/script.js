@@ -23,7 +23,7 @@ function registerClickEvents() {
           async:true, 
           success: function(data) {
             //Success callback of API call
-            $("#debug-div").append("Login Succeeded. TOKEN: " + data.token + "\n");
+            $("#debug-div").append("Login Succeeded. TOKEN: " + data.token + "<br>");
             createCookie('token',data.token,1);
             createCookie('username',logindata['username'],1);
             console.log("SUCCESS " + data + "\n");
@@ -53,7 +53,7 @@ function registerClickEvents() {
           async:true, 
           success: function(data) {
             //Success callback of API call
-            $("#debug-div").append("Token validated. Username:" + data.username + " Exp: " + data.expiration + "\n");
+            $("#debug-div").append("Token validated. Username:" + data.username + " Exp: " + data.expiration + "<br>");
             console.log("SUCCESS " + data + "\n");
           },
           error: function(data) {
