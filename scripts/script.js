@@ -1,8 +1,5 @@
 
-$(document).ready(function() {
-	registerClickEvents();
-	
-});
+$(document).ready(registerClickEvents);
 
 function registerClickEvents() {
 	$("#login-form-submit").click(function() {
