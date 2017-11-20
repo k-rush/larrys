@@ -39,7 +39,7 @@ function registerClickEvents() {
     var tokendata = {'token': readCookie('token')};   
     //$("#debug-div").append(logindata.username + " " + logindata.password + "<br>");
 
-    //Make API call to login
+    //Make API call to validate token (test)
     $.ajax( 
         {
           method: "POST",
@@ -64,32 +64,37 @@ function registerClickEvents() {
 
 
   $("#register-form-submit").click(function() {
-    
-    var logindata = {};
-    logindata['username'] = $("#username-input").val();
-    logindata['password'] = $("#password-input").val();   
-    $("#debug-div").append(logindata.username + " " + logindata.password + "<br>");
+    if(validatePassword()) {
+      var logindata = {};
+      //debugger;
+      logindata.username = $("#username-input").val();
+      logindata.password = $("#password-input").val();
+      logindata.email = $("#email-input").val();
+      logindata.firstname = $("#first-name-input").val();
+      logindata.lastname = $("#last-name-input").val();
+      $("#debug-div").append(logindata.username + " " + logindata.password + "<br>");
 
-    // API call to register
-    $.ajax( 
-        {
-          method: "POST",
-          url: "https://87uo5r92ya.execute-api.us-west-2.amazonaws.com/prod/register-user",
-          dataType: "json",
-          data: JSON.stringify(logindata),
-          crossdomain: true,
-          async:true, 
-          success: function(data) {
-            //Success callback of API call
-            console.log("SUCCESS " + data);
-          },
-          error: function(data) {
-            //Error callback of API call
-            console.log("ERROR " + data);
+      // API call to register
+      $.ajax( 
+          {
+            method: "POST",
+            url: "https://87uo5r92ya.execute-api.us-west-2.amazonaws.com/prod/register-user",
+            dataType: "json",
+            data: JSON.stringify(logindata),
+            crossdomain: true,
+            async:true, 
+            success: function(data) {
+              //Success callback of API call
+              console.log("SUCCESS " + data);
+            },
+            error: function(data) {
+              //Error callback of API call
+              console.log("ERROR " + data);
+            }
+
           }
-
-        }
-      );
+        );
+    }
   });
 
 
@@ -114,4 +119,20 @@ function readCookie(name) {
         if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
     }
     return null;
+}
+
+function validatePassword() {
+  //debugger;
+  password = $("#password-input").val();
+  confirm = $("#confirm-password-input").val();
+  //Do typeof comparison here so you don't have a cast exception later on
+  if(password != confirm) {
+    alert("Passwords do not match!");
+    return false;
+  }
+  else if(password.length < 6) {
+    alert("Password must be at least 6 characters long.");
+    return false
+  }
+  else return true;
 }
