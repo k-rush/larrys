@@ -50,7 +50,7 @@ function registerClickEvents() {
           async:true, 
           success: function(data) {
             //Success callback of API call
-            $("#debug-div").append("Token validated. Username:" + data.username + " Exp: " + data.expiration + "<br>");
+            $("#debug-div").append("Token validated. Username:" + data.username + " Validated:" + data.verified + "Exp: " + data.expiration + "<br>");
             console.log("SUCCESS " + data + "\n");
           },
           error: function(data) {
